@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: quizme
+  profiles:
+    active: dev
+  datasource:
+    username: <YOUR_DB_USERNAME>
+    password: <YOUR_DB_PASSWORD>
+  jpa:
+    hibernate:
+      ddl-auto: validate # validate the created tables schema against the entities, app won't start if they don't match
+#  sql:
+#    init:
+#      mode: always # always run schema and data scripts on startup
