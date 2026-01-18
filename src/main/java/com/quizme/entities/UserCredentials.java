@@ -22,4 +22,12 @@ public class UserCredentials {
         this.userId = userId;
         this.password = password;
     }
+
+    public User getUser() {
+        return userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

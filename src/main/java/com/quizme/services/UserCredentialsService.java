@@ -28,10 +28,9 @@ public class UserCredentialsService {
      * The password is hashed before being stored.
      * @param user the User entity to associate the credentials with
      * @param password the plaintext password to be hashed and stored
-     * @return the saved UserCredentials entity
      */
-    public UserCredentials createCredentialsForUser(User user, String password) {
+    public void createCredentialsForUser(User user, String password) {
         var userCredentials = new UserCredentials(user, passwordHasher.hashPassword(password));
-        return userCredentialsRepo.save(userCredentials);
+        userCredentialsRepo.save(userCredentials);
     }
 }
