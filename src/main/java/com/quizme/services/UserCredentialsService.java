@@ -4,17 +4,20 @@ import com.quizme.entities.User;
 import com.quizme.entities.UserCredentials;
 import com.quizme.repos.UserCredentialsRepo;
 import com.quizme.utils.PasswordHasher;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class UserCredentialsService {
-    @Autowired
-    private UserCredentialsRepo userCredentialsRepo;
-    @Autowired
-    private PasswordHasher passwordHasher;
+    private final UserCredentialsRepo userCredentialsRepo;
+    private final PasswordHasher passwordHasher;
+
+    public UserCredentialsService (UserCredentialsRepo userCredentialsRepo,
+                                  PasswordHasher passwordHasher) {
+        this.userCredentialsRepo = userCredentialsRepo;
+        this.passwordHasher = passwordHasher;
+    }
 
     public Optional<UserCredentials> findByUserId(User user) {
         return userCredentialsRepo.findByUserId(user);

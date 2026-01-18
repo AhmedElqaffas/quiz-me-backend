@@ -6,7 +6,6 @@ import com.quizme.repos.UserRepo;
 import com.quizme.services.result.Failure;
 import com.quizme.services.result.FailureReason;
 import com.quizme.services.result.Result;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -14,12 +13,17 @@ import org.springframework.transaction.support.TransactionTemplate;
 @Service
 public class RegistrationService {
 
-    @Autowired
-    private UserRepo userRepo;
-    @Autowired
-    private UserCredentialsService userCredentialsService;
-    @Autowired
-    private TransactionTemplate transactionTemplate;
+    private final UserRepo userRepo;
+    private final UserCredentialsService userCredentialsService;
+    private final TransactionTemplate transactionTemplate;
+
+    public RegistrationService(UserRepo userRepo,
+                               UserCredentialsService userCredentialsService,
+                               TransactionTemplate transactionTemplate) {
+        this.userRepo = userRepo;
+        this.userCredentialsService = userCredentialsService;
+        this.transactionTemplate = transactionTemplate;
+    }
 
     /**
      * Register a user with given credentials.<br>

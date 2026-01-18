@@ -2,7 +2,6 @@ package com.quizme.utils;
 
 import com.quizme.config.AppProperties;
 import org.jspecify.annotations.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +10,11 @@ import java.util.Objects;
 @Component
 public class PasswordHasher {
 
-    @Autowired
-    private AppProperties appProperties;
+    private final AppProperties appProperties;
+
+    public PasswordHasher(AppProperties appProperties) {
+        this.appProperties = appProperties;
+    }
 
     /**
      * Hash a password using Argon2 algorithm.
