@@ -15,4 +15,11 @@ public class UserCredentials {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    protected UserCredentials() {}
+
+    public UserCredentials(User userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
 }
