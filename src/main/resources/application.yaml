@@ -9,9 +9,24 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate # validate the created tables schema against the entities, app won't start if they don't match
-#  sql:
-#    init:
-#      mode: always # always run schema and data scripts on startup
+  #  sql:
+  #    init:
+  #      mode: always # always run schema and data scripts on startup
+
+  ssl:
+    bundle:
+      jks:
+        sslbundle:
+          key:
+            alias: # can be found by running `keytool -list -v -keystore <your_cert> -storetype PKCS12` and checking "Alias name"
+          keystore:
+            location: classpath:<YOUR_CERT> # or file:<absolute_file_path>
+            password: <YOUR_PW>
+            type: PKCS12
+server:
+  ssl:
+    bundle: sslbundle
+
 app:
   auth:
     pepper: <YOUR_PEPPER_STRING>
